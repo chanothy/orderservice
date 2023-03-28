@@ -7,8 +7,17 @@ import java.util.Objects;
 public class Order {
     private int customerId;
     private double total;
-    private ShippingAddress shippingAddress;
+    private Address shippingAddress;
     private List<Item> items = new ArrayList<>();
+    private Payment payment;
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
 
     public List<Item> getItems() {
         return items;
@@ -18,11 +27,11 @@ public class Order {
         this.items = items;
     }
 
-    public ShippingAddress getShippingAddress() {
+    public Address getShippingAddress() {
         return shippingAddress;
     }
 
-    public void setShippingAddress(ShippingAddress shippingAddress) {
+    public void setShippingAddress(Address shippingAddress) {
         this.shippingAddress = shippingAddress;
     }
 
