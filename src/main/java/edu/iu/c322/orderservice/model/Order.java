@@ -1,5 +1,7 @@
 package edu.iu.c322.orderservice.model;
 
+import jakarta.validation.Valid;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,6 +9,8 @@ import java.util.Objects;
 public class Order {
     private int customerId;
     private double total;
+
+    @Valid
     private Address shippingAddress;
     private List<Item> items = new ArrayList<>();
     private Payment payment;

@@ -1,8 +1,12 @@
 package edu.iu.c322.orderservice.model;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class Address {
 
+    @NotEmpty(message = "state cannot be empty")
     private String state;
+    @NotEmpty(message = "city cannot be empty")
     private String city;
     private int postalCode;
 
