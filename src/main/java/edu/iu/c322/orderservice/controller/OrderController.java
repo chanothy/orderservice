@@ -1,5 +1,6 @@
 package edu.iu.c322.orderservice.controller;
 
+import edu.iu.c322.orderservice.model.Item;
 import edu.iu.c322.orderservice.model.Order;
 import edu.iu.c322.orderservice.repository.OrderRepository;
 import jakarta.validation.Valid;
@@ -24,4 +25,12 @@ public class OrderController {
     public int create(@Valid @RequestBody Order order) {
         return repository.create(order);
     }
+
+    @GetMapping("/{id}")
+    public List<Item> findByCustomerID(@PathVariable int id) {
+        Order order = repository.getOrderById(id);
+        return order.getItems();
+    }
+
+
 }

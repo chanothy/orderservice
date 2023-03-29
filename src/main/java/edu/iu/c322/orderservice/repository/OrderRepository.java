@@ -13,9 +13,11 @@ public class OrderRepository {
         return orders;
     }
     public int create(Order order) {
-        int id = orders.size() + 1;
-        order.setCustomerId(id);
         orders.add(order);
-        return id;
+        return order.getCustomerId();
+    }
+
+    public Order getOrderById(int id) {
+        return orders.stream().filter(x -> x.getCustomerId() == id).findAny().orElse(null);
     }
 }
