@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Order {
+    private int orderId;
     private int customerId;
     private double total;
 
@@ -66,5 +67,13 @@ public class Order {
     @Override
     public int hashCode() {
         return Objects.hash(customerId, total);
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }
