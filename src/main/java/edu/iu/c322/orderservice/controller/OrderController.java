@@ -3,7 +3,6 @@ package edu.iu.c322.orderservice.controller;
 import edu.iu.c322.orderservice.model.CancelledOrder;
 import edu.iu.c322.orderservice.model.Item;
 import edu.iu.c322.orderservice.model.Order;
-import edu.iu.c322.orderservice.repository.CancelledOrderRepository;
 import edu.iu.c322.orderservice.repository.OrderRepository;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +13,8 @@ import java.util.List;
 @RequestMapping("/orders")
 public class OrderController {
     private OrderRepository repository;
-//    private CancelledOrderRepository cancelledOrderRepository;
-    public OrderController(OrderRepository repository, CancelledOrderRepository cancelledOrderRepository) {
+    public OrderController(OrderRepository repository) {
         this.repository = repository;
-//        this.cancelledOrderRepository = cancelledOrderRepository;
     }
 
     @GetMapping

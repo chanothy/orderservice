@@ -41,7 +41,7 @@ public class OrderRepository {
     public void delete(int id) {
         Order x = getOrderById(id);
         if (x != null) {
-            orders.remove(x);
+            x.setStatus("cancelled");
         }
         else {
             throw new IllegalStateException("Order id is not valid");
