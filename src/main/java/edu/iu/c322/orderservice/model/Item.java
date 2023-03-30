@@ -3,9 +3,18 @@ package edu.iu.c322.orderservice.model;
 import java.util.Objects;
 
 public class Item {
+    private int itemId;
     private String name;
     private int quantity;
     private int price;
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
 
     public String getName() {
         return name;

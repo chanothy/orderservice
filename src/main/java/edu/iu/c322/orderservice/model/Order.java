@@ -10,11 +10,30 @@ public class Order {
     private int orderId;
     private int customerId;
     private double total;
+    private String status;
+
+    private List<CancelledOrder> returns = new ArrayList<>();
 
     @Valid
     private Address shippingAddress;
     private List<Item> items = new ArrayList<>();
     private Payment payment;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public List<CancelledOrder> getReturns() {
+        return returns;
+    }
+
+    public void setReturns(List<CancelledOrder> returns) {
+        this.returns = returns;
+    }
 
     public Payment getPayment() {
         return payment;
@@ -56,24 +75,25 @@ public class Order {
         this.total = total;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return customerId == order.customerId && total == order.total;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(customerId, total);
-    }
-
     public int getOrderId() {
         return orderId;
     }
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return orderId == order.orderId && customerId == order.customerId && Double.compare(order.total, total) == 0 && shippingAddress.equals(order.shippingAddress) && items.equals(order.items) && payment.equals(order.payment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId, customerId, total, shippingAddress, items, payment);
     }
 }
