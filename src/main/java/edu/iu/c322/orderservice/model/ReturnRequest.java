@@ -2,7 +2,7 @@ package edu.iu.c322.orderservice.model;
 
 import java.util.Objects;
 
-public class CancelledOrder {
+public class ReturnRequest {
     private int orderId;
     private int itemId;
     private String reason;
@@ -41,7 +41,7 @@ public class CancelledOrder {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CancelledOrder that = (CancelledOrder) o;
+        ReturnRequest that = (ReturnRequest) o;
         return orderId == that.orderId && itemId == that.itemId && reason.equals(that.reason);
     }
 

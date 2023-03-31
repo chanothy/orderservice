@@ -1,6 +1,6 @@
 package edu.iu.c322.orderservice.repository;
 
-import edu.iu.c322.orderservice.model.CancelledOrder;
+import edu.iu.c322.orderservice.model.ReturnRequest;
 import edu.iu.c322.orderservice.model.Item;
 import edu.iu.c322.orderservice.model.Order;
 import org.springframework.stereotype.Repository;
@@ -66,7 +66,7 @@ public class OrderRepository {
 //    }
 
     @PutMapping("/return")
-    public void update(CancelledOrder cancel) {
+    public void update(ReturnRequest cancel) {
         Order x = getOrderById(cancel.getOrderId());
         if (x != null) {
             Item i = getItemById(cancel.getItemId(),x);

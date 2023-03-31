@@ -12,7 +12,7 @@ public class Order {
     private double total;
     private String status;
 
-    private List<CancelledOrder> returns = new ArrayList<>();
+    private List<ReturnRequest> returns = new ArrayList<>();
 
     @Valid
     private Address shippingAddress;
@@ -27,11 +27,11 @@ public class Order {
         this.status = status;
     }
 
-    public List<CancelledOrder> getReturns() {
+    public List<ReturnRequest> getReturns() {
         return returns;
     }
 
-    public void setReturns(List<CancelledOrder> returns) {
+    public void setReturns(List<ReturnRequest> returns) {
         this.returns = returns;
     }
 

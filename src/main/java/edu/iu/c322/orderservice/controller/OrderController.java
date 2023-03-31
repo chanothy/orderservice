@@ -1,6 +1,6 @@
 package edu.iu.c322.orderservice.controller;
 
-import edu.iu.c322.orderservice.model.CancelledOrder;
+import edu.iu.c322.orderservice.model.ReturnRequest;
 import edu.iu.c322.orderservice.model.Item;
 import edu.iu.c322.orderservice.model.Order;
 import edu.iu.c322.orderservice.repository.OrderRepository;
@@ -40,7 +40,12 @@ public class OrderController {
     @GetMapping("/{id}")
     public List<Item> findByCustomerID(@PathVariable int id) {
         Order order = repository.getOrderById(id);
-        return order.getItems();
+        if (order != null) {
+            return order.getItems();
+        }
+        else {
+            throw new IllegalStateException("order id is not valid");
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -49,7 +54,7 @@ public class OrderController {
     }
 
     @PutMapping("/return")
-    public void update(@Valid @RequestBody CancelledOrder cancelledOrder) {
-        repository.update(cancelledOrder);
+    public void update(@Valid @RequestBody ReturnRequest returnRequest) {
+        repository.update(returnRequest);
     }
 }
