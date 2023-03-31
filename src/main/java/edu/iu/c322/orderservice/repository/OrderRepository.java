@@ -19,8 +19,9 @@ public class OrderRepository {
         return orders;
     }
     public int create(Order order) {
-        orders.add(order);
         int id = orders.size() + 1;
+        order.setOrderId(id);
+        orders.add(order);
         order.setStatus("ordered");
 
         List<Item> items = order.getItems();
