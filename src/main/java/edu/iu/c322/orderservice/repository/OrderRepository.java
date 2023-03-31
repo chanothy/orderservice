@@ -4,6 +4,7 @@ import edu.iu.c322.orderservice.model.ReturnRequest;
 import edu.iu.c322.orderservice.model.Item;
 import edu.iu.c322.orderservice.model.Order;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.ArrayList;
@@ -39,6 +40,16 @@ public class OrderRepository {
         return o.getItems().stream().filter(x -> x.getItemId() == id).findAny().orElse(null);
     }
 
+    public List<Item> findByCustomerID(int id) {
+        Order order = getOrderById(id);
+        if (order != null) {
+            return order.getItems();
+        }
+        else {
+            throw new IllegalStateException("order id is not valid");
+        }
+    }
+
     public void delete(int id) {
         Order x = getOrderById(id);
         if (x != null) {
@@ -65,7 +76,6 @@ public class OrderRepository {
 //        }
 //    }
 
-    @PutMapping("/return")
     public void update(ReturnRequest cancel) {
         Order x = getOrderById(cancel.getOrderId());
         if (x != null) {

@@ -39,13 +39,7 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public List<Item> findByCustomerID(@PathVariable int id) {
-        Order order = repository.getOrderById(id);
-        if (order != null) {
-            return order.getItems();
-        }
-        else {
-            throw new IllegalStateException("order id is not valid");
-        }
+        return repository.findByCustomerID(id);
     }
 
     @DeleteMapping("/{id}")
