@@ -1,5 +1,7 @@
 package edu.iu.c322.orderservice.handler;
 
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,5 +22,10 @@ public class GlobalExceptionHandler {
         String errorMessages = exception.getBindingResult().getFieldErrors().stream().map(error ->
                 error.getDefaultMessage()).collect(Collectors.joining(", "));
         return ResponseEntity.badRequest().body(errorMessages);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<String> handleEntityNotFoundException(EntityNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order not found");
     }
 }

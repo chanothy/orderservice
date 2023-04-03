@@ -1,8 +1,17 @@
 package edu.iu.c322.orderservice.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Payment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int paymentId;
     private String method;
     private int number;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Address billingAddress;
 
     public String getMethod() {

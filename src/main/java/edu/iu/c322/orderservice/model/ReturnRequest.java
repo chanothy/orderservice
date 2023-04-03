@@ -1,8 +1,13 @@
 package edu.iu.c322.orderservice.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.util.Objects;
 
+@Entity
 public class ReturnRequest {
+    @Id
     private int orderId;
     private int itemId;
     private String reason;

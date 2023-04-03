@@ -1,22 +1,33 @@
 package edu.iu.c322.orderservice.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.Valid;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "orders")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderId;
     private int customerId;
     private double total;
     private String status;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ReturnRequest> returns = new ArrayList<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
     @Valid
     private Address shippingAddress;
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
 
     public String getStatus() {
