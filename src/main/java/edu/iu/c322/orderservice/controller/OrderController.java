@@ -72,6 +72,8 @@ public class OrderController {
 //
     @PutMapping("/return")
     public void update(@Valid @RequestBody ReturnRequest returnRequest) {
-        Order order =
+        Order order = repository.getById(returnRequest.getOrderId());
+        order.getReturns().add(returnRequest);
+        repository.save(order);
     }
 }
