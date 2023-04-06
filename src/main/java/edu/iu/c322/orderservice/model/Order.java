@@ -15,7 +15,6 @@ public class Order {
     private int orderId;
     private int customerId;
     private double total;
-    private String status;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ReturnRequest> returns = new ArrayList<>();
@@ -29,14 +28,6 @@ public class Order {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public List<ReturnRequest> getReturns() {
         return returns;

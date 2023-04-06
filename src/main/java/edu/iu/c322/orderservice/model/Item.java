@@ -15,6 +15,15 @@ public class Item {
     private String name;
     private int quantity;
     private int price;
+    private String status = "Ordered";
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getItemId() {
         return itemId;

@@ -5,10 +5,6 @@ import edu.iu.c322.orderservice.model.ReturnRequest;
 import edu.iu.c322.orderservice.model.Item;
 import edu.iu.c322.orderservice.model.Order;
 import edu.iu.c322.orderservice.repository.OrdRepository;
-import edu.iu.c322.orderservice.repository.OrderRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,9 +61,11 @@ public class OrderController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {
-        Order order = new Order();
-        order.setOrderId(id);
-        repository.delete(order);
+        Order order = repository.getById(id);
+        for (int i = 0; i < order.getItems().size(); i++) {
+            order.getItems().get(i).setStatus("Cancelled");
+        }
+        repository.save(order);
     }
 //
     @PutMapping("/return")
