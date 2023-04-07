@@ -71,6 +71,9 @@ public class OrderController {
     @PutMapping("/return")
     public void update(@Valid @RequestBody ReturnRequest returnRequest) {
         Order order = repository.getById(returnRequest.getOrderId());
+        for (int i = 0; i < order.getItems().size(); i++) {
+            order.getItems().get(i).setStatusUpdatedOn(java.time.LocalDate.now().toString());
+        }
         order.getReturns().add(returnRequest);
         repository.save(order);
     }

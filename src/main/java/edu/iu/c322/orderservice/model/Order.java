@@ -15,6 +15,15 @@ public class Order {
     private int orderId;
     private int customerId;
     private double total;
+    private String date = java.time.LocalDate.now().toString();
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ReturnRequest> returns = new ArrayList<>();

@@ -16,6 +16,15 @@ public class Item {
     private int quantity;
     private int price;
     private String status = "Ordered";
+    private String statusUpdatedOn = java.time.LocalDate.now().toString();
+
+    public String getStatusUpdatedOn() {
+        return statusUpdatedOn;
+    }
+
+    public void setStatusUpdatedOn(String statusUpdatedOn) {
+        this.statusUpdatedOn = statusUpdatedOn;
+    }
 
     public String getStatus() {
         return status;
